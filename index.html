@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <h1>Wallet Tracker</h1>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- <h1>Wallet Tracker</h1> -->
+    <div class="container">
+
+        <div class="signinFormArea flex">
+        <form class="singinForm">
+          <h1>SIGN IN</h1>
+          <input class="singinEmail" type="text" placeholder="Enter Email" />
+          <input class="singinPassword" type="text" placeholder="Enter Password"/>
+          <button type="submit">submit</button>
+        </form>
+      </div>
+
+      <div class="signupFormArea flex">
+        <form class="singupForm">
+          <h1>SIGN UP</h1>
+          <input class="signupName" type="text" placeholder="Enter Full Name" />
+          <input class="signupEmail" type="text" placeholder="Enter Email" />
+          <input class="signupPassword" type="text" placeholder="Enter Password"/>
+          <button type="submit">submit</button>
+        </form>
+      </div>
+    </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
 
-     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyD0HBrqXmV-rn8CBfo7lCvYqPh6fNWqzAU",
-    authDomain: "wallet-tracker-js-4004a.firebaseapp.com",
-    databaseURL: "https://wallet-tracker-js-4004a.firebaseio.com",
-    projectId: "wallet-tracker-js-4004a",
-    storageBucket: "wallet-tracker-js-4004a.appspot.com",
-    messagingSenderId: "1097951228404",
-    appId: "1:1097951228404:web:63a5fd9a4b6779eb38c9a1",
-    measurementId: "G-LTR6WWZB0W"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyD0HBrqXmV-rn8CBfo7lCvYqPh6fNWqzAU",
+        authDomain: "wallet-tracker-js-4004a.firebaseapp.com",
+        databaseURL: "https://wallet-tracker-js-4004a.firebaseio.com",
+        projectId: "wallet-tracker-js-4004a",
+        storageBucket: "wallet-tracker-js-4004a.appspot.com",
+        messagingSenderId: "1097951228404",
+        appId: "1:1097951228404:web:63a5fd9a4b6779eb38c9a1",
+        measurementId: "G-LTR6WWZB0W",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
 
     <script src="./js/index.js"></script>
-</body>
+  </body>
 </html>
