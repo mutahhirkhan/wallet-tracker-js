@@ -7,8 +7,43 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>DASHBOARD PAGE</h1>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo flex"><h1>LOGO</h1></div>
+            <div class="amount flex"><h2>45$</h2></div>
+            <div class="name flex"><h3>Name</h3></div>
+        </div>
+        <div class="transactionForm flex"><h1> T R A N S A C T I O N __ F O R M</h1></div>
+        <div class="transactionList flex"><h1> T R A N S A C T I O N __ L I S T</h1></div>
+    </div>
     
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD0HBrqXmV-rn8CBfo7lCvYqPh6fNWqzAU",
+      authDomain: "wallet-tracker-js-4004a.firebaseapp.com",
+      databaseURL: "https://wallet-tracker-js-4004a.firebaseio.com",
+      projectId: "wallet-tracker-js-4004a",
+      storageBucket: "wallet-tracker-js-4004a.appspot.com",
+      messagingSenderId: "1097951228404",
+      appId: "1:1097951228404:web:63a5fd9a4b6779eb38c9a1",
+      measurementId: "G-LTR6WWZB0W",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+
     <script src="./js/dashboard.js"></script>
 </body>
 </html>

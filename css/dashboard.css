@@ -3,6 +3,34 @@
     margin: 0;
     border: 0;
 }
-h1{
-    color: teal;
+html{
+    font-size: 62.5%;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    display: grid;
+    grid-template-rows: 10vh 15vh minmax(75vh,min-content);
+    background: silver;
+}
+.navbar{
+    background: wheat;
+    display: grid;
+    grid-template-columns: min-content 1fr max-content;
+}
+.logo{
+    padding: 0 2rem;
+}
+.name{
+    padding: 0 2rem;
+
+}
+.transactionForm{
+    background: lightcyan;
+}
+.transactionList{
+    background: sandybrown;
 }
