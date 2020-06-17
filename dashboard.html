@@ -11,10 +11,34 @@
         <div class="navbar">
             <div class="logo flex"><h1>LOGO</h1></div>
             <div class="amount flex"><h2>45$</h2></div>
-            <div class="name flex"><h3>Name</h3></div>
+            <div class="name flex"><button class="signoutBtn">Sign OUt</button> <h3> Name</h3></div>
         </div>
-        <div class="transactionForm flex"><h1> T R A N S A C T I O N __ F O R M</h1></div>
-        <div class="transactionList flex"><h1> T R A N S A C T I O N __ L I S T</h1></div>
+        <div class="transactionForm flex">
+          <!-- <h1> T R A N S A C T I O N __ F O R M</h1> -->
+          
+          <form class="transactionForm">
+            <input class="title" type="text" placeholder="title" >
+            <input class="cost" type="text" placeholder="cost" >
+            <select selected="select" class="transactionType" >
+              <option value="expanse">expanse</option>
+              <option  value="income">income</option>
+            </select>
+            <input class="transactionAt" type="date">
+            <button class="addBtn" type="submit" >Add</button>
+          </form>
+          
+        </div>
+        <div class="transactionList">
+          <!-- <h1> T R A N S A C T I O N __ L I S T</h1> -->
+          
+          <!-- is append krwana he -->
+          <!-- <div class="headingTags flex">
+            <div class="indexNo"><h1>Sr. No.</h1></div>
+            <div class="titleList"><h1>Title</h1></div>
+            <div class="amount">Amount</div>
+            <div class="date">Date</div>
+          </div> -->
+        </div>
     </div>
     
 

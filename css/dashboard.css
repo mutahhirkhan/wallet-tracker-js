@@ -29,8 +29,21 @@ html{
 
 }
 .transactionForm{
-    background: lightcyan;
+    background: rgb(0, 97, 97);
 }
 .transactionList{
     background: sandybrown;
+    height: 74vh;
+    overflow-y: scroll;
 }
+.transactionListItems{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: min-content 1fr minmax(8vw, min-content) minmax(15vw, min-content) min-content;
+}
+.renderItems{
+    border-right:1px solid black;
+    border-bottom:1px solid black;
+    padding: 4px;
+}
+
