@@ -23,7 +23,7 @@ var formSubmission = async (e) => {
     if (title && cost && transactionType && transactionAt) {
       var transactionObj = {
         title,
-        cost,
+        cost: parseInt(cost),
         transactionType,
         transactionAt: new Date(transactionAt),
         transactionBy: uid,
@@ -41,6 +41,24 @@ var formSubmission = async (e) => {
   }
 };
 
+
+//Current Balance
+var currentBalance = (transArr) => {
+
+  var amountDiv = document.querySelector('.amount h2')
+  var currentAMount = 0;
+  transArr.forEach( transaction => {
+    var {cost, transactionType} = transaction;
+    if (transactionType === 'income') {
+      currentAMount += cost;
+    } else {
+      currentAMount -= cost;
+    }
+  });
+  console.log(currentAMount)
+  amountDiv.textContent= `${currentAMount} Rs`
+
+}
 //signout
 var userSignOut = async () => {
   await auth.signOut();
@@ -50,7 +68,6 @@ var userSignOut = async () => {
 var fetchingUserData = async (uid) => {
   try {
     var userInfo = await firestore.collection("users").doc(uid).get();
-    // var dateOfCreation = userInfo.data().createdAt.toDate().toISOString().split("T")[0]
     return userInfo.data();
   } catch (error) {
     console.log(error.message);
@@ -59,7 +76,10 @@ var fetchingUserData = async (uid) => {
 
 //rendering transactions
 var renderTransaction = (transactionArr) => {
-    transactionList.innerHTML = ""
+  //current balacne
+  currentBalance(transactionArr);
+  //render transactions
+  transactionList.innerHTML = "";
   transactionArr.forEach((transaction, index) => {
     var {
       title,
@@ -72,7 +92,8 @@ var renderTransaction = (transactionArr) => {
       "beforeend",
       `<div class="transactionListItems">
         <div class="renderIndex renderItems">
-          <h1>${++index}</h1>
+          <!-- <h1><i class="fas fa-check"></i></h1> -->
+          <h1><i class="fas index ${transactionType === 'income' ? 'fa-check' : 'fa-times'}"></i></h1> 
         </div>
         <div class="renderTitle renderItems">
           <h1>${title}</h1>
@@ -81,10 +102,10 @@ var renderTransaction = (transactionArr) => {
           <h1>${cost}</h1>
         </div>
         <div class="renderTransactionAt renderItems">
-          <h1>${transactionAt.toDate().toISOString().split("T")[0]}</h1>
+          <h1>${transactionAt.toDate().toISOString().split("T")[0]}</h1> 
         </div>
         <div class="renderTransactionAt renderItems">
-          <h1><a href='./transaction.html#${transactionId}'> <button>view</button></h1></a>
+          <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" >view</button></h1></a>
         </div>
       </div>`
     );
@@ -97,13 +118,13 @@ var fetchingTransaction = async (uid) => {
   var query = await firestore
     .collection("transactions")
     .where("transactionBy", "==", uid)
-    .orderBy("transactionAt","desc")        //SORTING ("kis cheez ke reference se", "order")
+    .orderBy("transactionAt", "desc") //SORTING ("kis cheez ke reference se", "order")
     .get();
   // console.log(query);
   query.forEach((doc) => {
     var element = doc.data();
     element.transactionId = doc.id;
-    transactions.push(element);     
+    transactions.push(element);
   });
   return transactions;
 };
@@ -122,12 +143,13 @@ auth.onAuthStateChanged(async (user) => {
       var transactions = await fetchingTransaction(uid);
       //   render process
       renderTransaction(transactions);
+      
     } else {
       // console.log("logged out")
       location.assign("./index.html");
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 });
 

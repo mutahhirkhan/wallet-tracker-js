@@ -3,47 +3,108 @@
     margin: 0;
     border: 0;
 }
+
 html{
     font-size: 62.5%;
 }
+
 .flex{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .container{
     display: grid;
     grid-template-rows: 10vh 15vh minmax(75vh,min-content);
     background: silver;
 }
+
 .navbar{
     background: wheat;
     display: grid;
     grid-template-columns: min-content 1fr max-content;
+    color: rgb(0, 97, 97);
 }
+
 .logo{
     padding: 0 2rem;
 }
+
 .name{
     padding: 0 2rem;
 
 }
+
 .transactionForm{
     background: rgb(0, 97, 97);
 }
+
 .transactionList{
-    background: sandybrown;
+    background: seashell;
     height: 74vh;
     overflow-y: scroll;
 }
+
 .transactionListItems{
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: min-content 1fr minmax(8vw, min-content) minmax(15vw, min-content) min-content;
 }
+
 .renderItems{
     border-right:1px solid black;
     border-bottom:1px solid black;
     padding: 4px;
 }
 
+.logo {
+    font-size: 2rem;
+    
+}
+
+.amount h2{
+    border-bottom: 3px double black;
+}
+
+.signoutBtn{
+    background: none;
+    
+}
+.signoutBtn:hover{
+    /* border-bottom: 1px solid black; */
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.addBtn{
+    background: none;
+    color: wheat;
+}
+.addBtn:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.index{
+    font-size: 1rem;
+    width: 1rem;
+}
+
+.fa-times{
+    color: rgb(192, 0, 0);
+}
+
+.fa-check{
+    color: rgb(0, 207, 0);
+} 
+
+.viewBtn {
+    background: none;
+}
+
+.viewBtn:hover{
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}

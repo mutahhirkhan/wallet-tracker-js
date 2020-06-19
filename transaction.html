@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transaction</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Transaction</h1>
-</body>
+    <form class="transactionForm">
+      <input class="title" type="text" placeholder="title" />
+      <input class="cost" type="text" placeholder="cost" />
+      <select selected="select" class="transactionType">
+        <option value="expanse">expanse</option>
+        <option value="income">income</option>
+      </select>
+      <input class="transactionAt" type="date" />
+      <button class="addBtn" type="submit">Update</button>
+      <button class="DeleteBtn" type="submit">Dalete</button>
+
+    </form>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyD0HBrqXmV-rn8CBfo7lCvYqPh6fNWqzAU",
+        authDomain: "wallet-tracker-js-4004a.firebaseapp.com",
+        databaseURL: "https://wallet-tracker-js-4004a.firebaseio.com",
+        projectId: "wallet-tracker-js-4004a",
+        storageBucket: "wallet-tracker-js-4004a.appspot.com",
+        messagingSenderId: "1097951228404",
+        appId: "1:1097951228404:web:63a5fd9a4b6779eb38c9a1",
+        measurementId: "G-LTR6WWZB0W",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script src="./js/transaction.js"></script>
+  </body>
 </html>
