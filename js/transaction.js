@@ -1,3 +1,14 @@
+/* 
+-------------------------------------------
+-fetch specific transaction
+-fill form inital  values
+-allow user to edit transaction or delete
+-------------------------------------------
+
+*/
+
+
+//globals
 console.log("transaction");
 var auth = firebase.auth();
 var firestore = firebase.firestore();
@@ -12,6 +23,7 @@ var DeleteBtn = document.querySelector(".DeleteBtn");
 //fetching ID rom url
 var transactionID = location.hash.substring(1, location.hash.length);
 
+//fetch speciic transaction
 var fetchingTransaction = async (transactionID) => {
   var transaction = await firestore
     .collection("transactions")
@@ -20,8 +32,26 @@ var fetchingTransaction = async (transactionID) => {
   return transaction.data();
 };
 
+var settingUpInitialValues = ({
+  title,
+  cost,
+  transactionType: transType,
+  transactionAt: transAt,
+}) => {
+  var transTime = transAt.toDate().toISOString().split("T")[0];
+  //setting initial values
+  transactionTitle.value = title;
+  transactionCost.value = cost;
+  transactionType.value = transType;
+  transactionTime.value = transTime;
+
+}
 
 //edit transaction
+//collect data rom firestore 
+//make transaction ob
+//update details to firestore
+//redirect to dashboard
 var editFormHandler = async (e, transactionID) => {
   e.preventDefault();
   try {
@@ -69,19 +99,8 @@ auth.onAuthStateChanged(async (user) => {
     if (user) {
       uid = user.uid;
       //form inital values handeling
-      var {
-        title,
-        cost,
-        transactionType: transType,
-        transactionAt: transAt,
-      } = await fetchingTransaction(transactionID);
-      var transTime = transAt.toDate().toISOString().split("T")[0];
-      //setting initial values
-      transactionTitle.value = title;
-      transactionCost.value = cost;
-      transactionType.value = transType;
-      transactionTime.value = transTime;
-      console.log(title, cost, transTime, transType);
+      var transaction = await fetchingTransaction(transactionID);
+       settingUpInitialValues(transaction)
     } else {
       location.assign("./index.html");
     }

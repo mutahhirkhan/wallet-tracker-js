@@ -1,13 +1,67 @@
 console.log("connected");
-// console.log(firebase)
+
+//global variables
 var auth = firebase.auth();
 var firestore = firebase.firestore();
 var signinForm = document.querySelector(".signinFormArea");
 var signupForm = document.querySelector(".signupFormArea");
 var googleBtn = document.querySelector(".googleSignin");
-// console.log(signinForm)
-// console.log(signupForm)
 
+//WHAT WE DO HERE
+/*
+-------------------------------------
+-collecting user info from form 
+-sending info to firebase auth
+-using fn 'createUserWithEmailAndPassword', 'signInWithEmailAndPassword' & 'signInWithPopup'
+-if new user then storing info to db
+    >create user obj
+    >firestore query to set userinfo
+-if old user then redirect to  next page along with uid in url   
+-onAuthStateChange is important  
+-------------------------------------
+*/
+
+//global functions
+// -----------------------------------------------------------------------------------------
+// -fetching info from form
+// -signUpWithEmailAndPassword 
+// -get uid
+// -create user obj
+// -set to db
+
+var signupWork = async (e) => {
+  e.preventDefault();
+  try {
+    var fullName = document.querySelector(".signupName").value;
+    var email = document.querySelector(".signupEmail").value;
+    var password = document.querySelector(".signupPassword").value;
+
+    //signing up
+    if (fullName && email && password) {
+      var {
+        user: { uid },
+      } = await auth.createUserWithEmailAndPassword(email, password);
+    }
+    //send userInfo to database
+    var userInfo = {
+      fullName, //fullName = fullName
+      email,
+      createdAt: new Date(),
+    };
+    await firestore.collection("users").doc(uid).set(userInfo);
+
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+// -singnin with google auth uing GoogleAuthProvider
+// -if new user
+//      >using .... 'signInWithPopUp'
+//      >using... 'isNewUser' we get displaName, uid and email
+//- if old user
+//      >nothing.... simply redirect to next page with uid in url
 var signinWithGoogle = async () => {
   try {
     var googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -23,82 +77,65 @@ var signinWithGoogle = async () => {
         email,
         createdAt: new Date(),
       };
-      console.log(userInfo);
       await firestore.collection("users").doc(uid).set(userInfo);
-      console.log("done");
-      // Redirect todashboard page
-      // "/dashboard.html#{uid}"
+
     } else {
-      console.log("welcome");
-    //redirect to next page
-    location.assign(`./dashboard.html#${uid}`)
+
     }
   } catch (error) {
     console.log(error.message);
   }
 };
 
+
+// -fetch values from form 
+// -get uid from authsetion rom the object 'user >>> uid'
+// -using 'signInWithEmailAndPassword' 
+// -fetch info from firestore 
+// -redirect to next page with uid in url
 var signinWork = async (e) => {
   e.preventDefault();
   try {
     var email = document.querySelector(".singinEmail").value;
     var password = document.querySelector(".singinPassword").value;
-    // console.log(email, password)
+
     //signin in
     if (email && password) {
       var {
         user: { uid },
       } = await auth.signInWithEmailAndPassword(email, password);
-      console.log(uid);
     }
-    //verification
-    var signed = await firestore.collection("users").doc(uid).get();
-    console.log(signed.data());
 
-    //redirect to next page
-    location.assign(`./dashboard.html#${uid}`)
   } catch (error) {
     console.log(error.message);
   }
 };
 
-var signupWork = async (e) => {
-  e.preventDefault();
-  try {
-    var fullName = document.querySelector(".signupName").value;
-    var email = document.querySelector(".signupEmail").value;
-    var password = document.querySelector(".signupPassword").value;
-    // console.log(email, password, FullName)
-    //signing up
-    if (fullName && email && password) {
-      var {
-        user: { uid },
-      } = await auth.createUserWithEmailAndPassword(email, password);
-      console.log(uid);
-    }
-    //send userInfo to database
-    var userInfo = {
-      fullName, //fullName = fullName
-      email,
-      createdAt: new Date(),
-    };
-    console.log("in process");
-    await firestore.collection("users").doc(uid).set(userInfo);
-    console.log(userInfo);
-    //open the dashboard page
 
-    //redirect to next page
-    location.assign(`./dashboard.html#${uid}`)
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
+//LI S T E N E R S
 signinForm.addEventListener("submit", (e) => signinWork(e)); 
 signupForm.addEventListener("submit", (e) => signupWork(e));
 googleBtn.addEventListener("click", signinWithGoogle);
 
-// //ARRAY / OBECT DESTRUCTURING
+
+// AUTH LISTENER 
+// -this listener with trigger on ollowin conditions
+//      > when page reloads
+//      > On sign In  i.e. auth state change
+//      > on Sign Out i.e. auth state change
+
+auth.onAuthStateChanged(async (user) => {
+  try {
+    if (user) {
+     var {uid} = user;
+     location.assign(`./dashboard.html#${uid}`) 
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// //ARRAY / OBJECT DESTRUCTURING
 // var [n4,n5,n6] = [4,5,6]
 // console.log(n4,n5,n6)
 
