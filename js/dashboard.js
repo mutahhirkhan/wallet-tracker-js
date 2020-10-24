@@ -1,4 +1,4 @@
-/* 
+/*
 -------------------------------------------
 -render page data 
     > render user info 
@@ -29,6 +29,7 @@ var userSignOut = async () => {
 var fetchingUserData = async (uid) => {
   try {
     var userInfo = await firestore.collection("users").doc(uid).get();
+    console.log({userInfo : {uid} })
     return userInfo.data();
   } catch (error) {
     console.log(error.message);

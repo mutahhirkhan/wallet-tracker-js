@@ -38,20 +38,21 @@ var signupWork = async (e) => {
 
     //signing up
     if (fullName && email && password) {
-      var {
-        user: { uid },
-      } = await auth.createUserWithEmailAndPassword(email, password);
+      //ye change kiya he 
+      //send userInfo to database
+      var userInfo = {
+            fullName, //fullName = fullName
+            email,
+            createdAt: new Date(),
+          };
+          console.log(userInfo)
+          var {
+            user: { uid },
+          } = await auth.createUserWithEmailAndPassword(email, password);
+          await firestore.collection("users").doc(uid).set(userInfo);
     }
-    //send userInfo to database
-    var userInfo = {
-      fullName, //fullName = fullName
-      email,
-      createdAt: new Date(),
-    };
-    await firestore.collection("users").doc(uid).set(userInfo);
-
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 
@@ -78,9 +79,6 @@ var signinWithGoogle = async () => {
         createdAt: new Date(),
       };
       await firestore.collection("users").doc(uid).set(userInfo);
-
-    } else {
-
     }
   } catch (error) {
     console.log(error.message);
@@ -128,7 +126,9 @@ auth.onAuthStateChanged(async (user) => {
   try {
     if (user) {
      var {uid} = user;
-     location.assign(`./dashboard.html#${uid}`) 
+     setTimeout(() => {
+        location.assign(`./dashboard.html#${uid}`) 
+     }, 1000);
     }
   } catch (error) {
     console.log(error);
