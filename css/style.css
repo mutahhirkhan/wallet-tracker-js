@@ -1,22 +1,115 @@
 * {
-  padding: 0;
-  margin: 0;
-  border: 0;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
 }
+html{
+  font-size: 62.5%;
+}
+
 .flex {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .container {
+  background: rgb(147, 255, 204);
   height: 100vh;
   width: 100vw;
+  perspective: 1000px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: minmax(0, 5rem) 1fr minmax(0, 5rem);
+  grid-template-rows: minmax(0, 5rem) 1fr minmax(0, 5rem);
+  grid-template-areas: ". . ."
+                         ". center ."
+                         ". . .";
+  overflow: hidden;
+  place-items: center;
 }
-.signinFormArea {
-  background: sandybrown;
+
+.formsInner{
+  grid-area: center;
+  border: 4rem solid rgba(255, 255, 255, 0.678);
+  position: relative;
+  width: 450px;
+  height: 450px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+  border-radius: 50%;
+  text-transform: capitalize;
+  font-family: monospace;
 }
-.signupFormArea {
+/*                                JOINT WORK i.e. SIMILAR WORK ------------------- */
+#signupBtn, #signinBtn, .googleSignin{
+  background: none;
+  outline: none;
+  cursor: pointer;
+  transition: 300ms all ease-in-out;
+  font-size: 1.6rem;
+  color: rgb(33, 126, 83);
+  border-bottom: 2px ridge black;
+}
+#signupBtn:hover,  #signinBtn:hover, .googleSignin:hover{
+  transform: scale(1.1);
+  /* margin-top: 0; */
+  margin: 0px 0.4rem 0px 0.4rem;
+}
+.signinFormArea, .signupFormArea{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; 
+  border-radius: 50%;
+}
+.signinHeading, .signupHeading{
+  margin-bottom: 2rem;
+  margin-top: -4rem;
+}
+.signinHeading h3, .signupHeading h3{
+  font-size: large;
+  padding: 10px 0;
+  border-bottom: 1px solid red;
+}
+
+.singinForm, .singupForm{
+  flex-flow: column;
+  row-gap: 1rem;
+  font-size: 1.7rem;
+  word-spacing: -4px;
+}
+.btn{
+  text-align: center;
+  padding: 2rem 3rem;
+  background: rgb(147, 255, 204);
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  font-weight: lighter;
+  cursor: pointer;
+  height: 3rem;
+  width: 28rem;
+  border-radius: 50px;
+  padding-left: 2rem;
+  font-size: 1.5rem;
+  outline: none;
+  transition: all 300ms ease-in-out;
+}
+/*-------------------------------------------------------------------------- */
+
+.signinFormArea{  background: sandybrown; }
+
+.inputStyle{
+  height: 3rem;
+  width: 28rem;
+  border-radius: 50px;
+  padding-left: 2rem;
+  font-size: 1.5rem;
+  outline: none;
+}
+
+.signupFormArea{
   background: silver;
+  transform: rotateY(180deg);
 }

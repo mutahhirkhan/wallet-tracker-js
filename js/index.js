@@ -52,7 +52,8 @@ var signupWork = async (e) => {
           await firestore.collection("users").doc(uid).set(userInfo);
     }
   } catch (error) {
-    console.log(error);
+    alert(error.message)
+    // console.log(error);
   }
 };
 
@@ -81,7 +82,8 @@ var signinWithGoogle = async () => {
       await firestore.collection("users").doc(uid).set(userInfo);
     }
   } catch (error) {
-    console.log(error.message);
+    alert(error.message)
+    // console.log(error.message);
   }
 };
 
@@ -103,9 +105,9 @@ var signinWork = async (e) => {
         user: { uid },
       } = await auth.signInWithEmailAndPassword(email, password);
     }
-
   } catch (error) {
-    console.log(error.message);
+    alert(error.message)
+    // console.log(error.message);
   }
 };
 
@@ -128,7 +130,7 @@ auth.onAuthStateChanged(async (user) => {
      var {uid} = user;
      setTimeout(() => {
         location.assign(`./dashboard.html#${uid}`) 
-     }, 1000);
+     }, 500);
     }
   } catch (error) {
     console.log(error);

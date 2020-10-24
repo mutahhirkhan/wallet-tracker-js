@@ -9,28 +9,52 @@
 </head>
 
 <body>
-  <h1>بٹوا  راجا</h1>
-  <div class="container">
-    
-    <div class="signinFormArea flex">
-      <form class="singinForm">
-        <h1>SIGN IN</h1>
-        <input class="singinEmail" type="text" placeholder="Enter Email" />
-        <input class="singinPassword" type="text" placeholder="Enter Password" />
-        <button type="submit">submit</button>
-        <button class="googleSignin" type="button">Sign in with Google</button>
-      </form>
+  <div class="container" id="containerid">
+
+    <div class="formsInner" id="formsInnerid">
+      <div class="signinFormArea flex">
+        <form class="singinForm flex">
+          <div class="signinHeading">
+            <h1>SIGN IN</h1>
+            <h3>SIGN IN TO YOUR ACCOUNT</h3>
+          </div>
+          <div><input class="singinEmail inputStyle" type="text" placeholder="Enter Email" /></div>
+          <div><input class="singinPassword inputStyle" type="text" placeholder="Enter Password" /></div>
+          <div>
+            <input type="checkbox" name="rememberMe" class="rememberMe">Remember Me
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <input type="checkbox" name="policyAgreement" class="policyAgreement">Terms
+          </div>
+          <div><button class="btn flex" type="submit">submit</button></div>
+          <div><label>Sign in with</label> <button class="googleSignin" type="button">Google</button></div>
+          <div><label>Don't have an account</label> <span></span><button id="signupBtn">sign up</button> <label>now</label></div>
+        </form>
+      </div>
+
+      <div class="signupFormArea flex">
+        <form class="singupForm flex">
+          <div class="signupHeading">
+            <h1>SIGN UP</h1>
+            <h3>  CREATE AN ACCOUNT</h3>
+          </div>
+          <div><input class="signupName inputStyle" type="text" placeholder="Enter Full Name" /></div>
+          <div><input class="signupEmail inputStyle" type="text" placeholder="Enter Email" /></div>
+          <div><input class="signupPassword inputStyle" type="text" placeholder="Enter Password" /></div>
+          <div><button class="btn flex" type="submit">submit</button></div>
+          <div><label>Already Have an Account</label> <span> </span><button id="signinBtn">sign in</button></div>
+        </form>
+      </div>
     </div>
 
-    <div class="signupFormArea flex">
-      <form class="singupForm">
-        <h1>SIGN UP</h1>
-        <input class="signupName" type="text" placeholder="Enter Full Name" />
-        <input class="signupEmail" type="text" placeholder="Enter Email" />
-        <input class="signupPassword" type="text" placeholder="Enter Password" />
-        <button type="submit">submit</button>
-      </form>
-    </div>
   </div>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -59,6 +83,7 @@
   </script>
 
   <script src="./js/index.js"></script>
+  <script src="./js/designIndex.js"></script>
 </body>
 
 </html>
