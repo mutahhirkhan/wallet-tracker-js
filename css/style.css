@@ -119,7 +119,6 @@ html{
 }
 
 .signupFormArea{
-  /* background: silver; */
   transform: rotateY(180deg);
 }
 
@@ -145,12 +144,15 @@ html{
     height: 320px;
   }
   .singinForm, .singupForm{
-    row-gap: 1rem;
-    font-size: 1.5rem;
+    row-gap: 1.6rem;
+    font-size: 1.7rem;
   }
   .signinHeading h3, .signupHeading h3{
-    padding: 10px 0;
+    padding: 6px 0;
     border-bottom: 1px solid red;
+  }
+  .btn{
+    padding: 2rem 3rem;
   }
 }
 

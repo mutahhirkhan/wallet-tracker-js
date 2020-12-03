@@ -1,9 +1,9 @@
-console.log('connected')
 var signupBtn = document.querySelector('#signupBtn')
 var signinBtn = document.querySelector("#signinBtn")
 
 
 var flipFunction = (e) => {
+    console.log(e)      
     var container = document.querySelector('#containerid')
     var formsInner = document.querySelector('#formsInnerid')
     e.preventDefault()
