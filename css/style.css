@@ -44,7 +44,7 @@ html{
   text-transform: capitalize;
   font-family: monospace;
 }
-/*                                JOINT WORK i.e. SIMILAR WORK ------------------- */
+/*                                JOINT WORK i.e. SIMILAR WORK -------------------- */
 #signupBtn, #signinBtn, .googleSignin{
   background: none;
   outline: none;
