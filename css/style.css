@@ -130,8 +130,8 @@ html{
   } 
   .formsInner{
     border: 2.5rem solid rgba(255, 255, 255, 0.678);
-    width: 350px;
-    height: 350px;
+    width: 370px;
+    height: 370px;
   }
 }
 
@@ -141,17 +141,22 @@ html{
   } 
   .formsInner{
     border: 2rem solid rgba(255, 255, 255, 0.678);
-    width: 260px;
-    height: 260px;
+    width: 320px;
+    height: 320px;
   }
   .singinForm, .singupForm{
-    row-gap: 0.7rem;
+    row-gap: 1rem;
     font-size: 1.5rem;
-    word-spacing: -4px;
   }
   .signinHeading h3, .signupHeading h3{
-    font-size: large;
-    padding: 5px 0;
+    padding: 10px 0;
     border-bottom: 1px solid red;
+  }
+}
+
+@media only screen and (max-width: 370px){
+  .formsInner{
+    width: 290px;
+    height: 290px;
   }
 }
