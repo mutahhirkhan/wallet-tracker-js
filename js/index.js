@@ -130,7 +130,7 @@ auth.onAuthStateChanged(async (user) => {
      var {uid} = user;
      setTimeout(() => {
         location.assign(`./dashboard.html#${uid}`) 
-     }, 500);
+     }, 1000);
     }
   } catch (error) {
     console.log(error);
