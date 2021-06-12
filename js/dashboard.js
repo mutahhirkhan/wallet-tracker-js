@@ -24,12 +24,25 @@ var userSignOut = async () => {
   await auth.signOut();
 };
 
+var converIntoK = (num) => {
+  return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+}
+
+var dateModelling = (date) => {
+  var day = date.toDate().getDate()
+  day = day < 9 ? "0"+day : day;
+  var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.toDate().getMonth()];
+  month = month.substring(0,3)
+  date =`${day} ${month} ${date.toDate().getFullYear()}`;
+  return date
+}
+
 
 //fetching data through uid
 var fetchingUserData = async (uid) => {
   try {
     var userInfo = await firestore.collection("users").doc(uid).get();
-    console.log({userInfo : {uid} })
+    // console.log({userInfo : {uid} })
     return userInfo.data();
   } catch (error) {
     console.log(error.message);
@@ -56,7 +69,6 @@ var fetchingTransaction = async (uid) => {
     .where("transactionBy", "==", uid)
     .orderBy("transactionAt", "desc") //SORTING ("kis cheez ke reference se", "order")
     .get();
-  // console.log(query);
   query.forEach((doc) => {
     var element = doc.data();
     element.transactionId = doc.id;
@@ -90,6 +102,7 @@ var currentBalance = (transArr) => {
 var renderTransaction = async (uid) => {
   //fetch user transaction
   var transactionArr = await fetchingTransaction(uid);
+  console.log(transactionArr)
   //current balacne
   currentBalance(transactionArr);
   //render transactions
@@ -102,6 +115,10 @@ var renderTransaction = async (uid) => {
       transactionId,
       transactionAt,
     } = transaction;
+    tempCost = converIntoK(cost)
+    tempCost = transactionType === 'expanse' ? `-PKR ${tempCost}` : `PKR${tempCost}`;
+    transactionAt = dateModelling(transactionAt)
+
     transactionList.insertAdjacentHTML(
       "beforeend",
       `<div class="transactionListItems">
@@ -115,13 +132,13 @@ var renderTransaction = async (uid) => {
       <h1>${title}</h1>
       </div>
       <div class="renderCost renderItems">
-      <h1>${cost}</h1>
+      <h1>${tempCost}</h1>
       </div>
       <div class="renderTransactionAt renderItems">
-      <h1>${transactionAt.toDate().toISOString().split("T")[0]}</h1> 
+      <h1>${transactionAt}</h1> 
       </div>
       <div class="renderTransactionAt renderItems">
-      <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" >view</button></h1></a>
+      <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" ><span>&bull;</span><span>&bull;</span><span>&bull;</span></button></h1></a>
       </div>
       </div>`
     );
@@ -141,6 +158,7 @@ var formSubmission = async (e) => {
     var cost = document.querySelector(".cost").value;
     var transactionType = document.querySelector(".transactionType").value;
     var transactionAt = document.querySelector(".transactionAt").value;
+    console.log(transactionAt)
     if (title && cost && transactionType && transactionAt) {
       var transactionObj = {
         title,

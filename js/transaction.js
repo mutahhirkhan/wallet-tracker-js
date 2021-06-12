@@ -20,7 +20,7 @@ var transactionType = document.querySelector(".transactionType");
 var transactionTime = document.querySelector(".transactionAt");
 var DeleteBtn = document.querySelector(".DeleteBtn");
 
-//fetching ID rom url
+//fetching ID from url
 var transactionID = location.hash.substring(1, location.hash.length);
 
 //fetch speciic transaction

@@ -102,9 +102,15 @@ html{
 
 .viewBtn {
     background: none;
+    text-decoration: none;
+    outline: none;
+}
+a {
+    text-decoration: none;
+    outline: none;
 }
 
 .viewBtn:hover{
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     cursor: pointer;
 }
