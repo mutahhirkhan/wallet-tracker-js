@@ -10,22 +10,33 @@
 </head>
 <body>
     <div class="container">
-        <div class="navbar">
-            <div class="logo flex"><h1 class="logo"><i class="fas fa-coins"></i></h1></div>
-            <div class="amount flex"><h2>0 Rs</h2></div>
-            <div class="name flex"><button class="signoutBtn">Sign OUt</button> <h3> Name</h3></div>
+        <div class="navbar flex">
+            <div class="logo"><h1 class="logo"><i class="fas fa-coins"></i></h1></div>
+            <div></div>
+            <div class="singout"><button class="signoutBtn"> Sign OUt</button></div>
+            <div class="name flex"><i class="far fa-user-circle"></i> <h3> Name</h3></div>
+        </div>
+        <div class="details">
+          <div class="amount"><h2>PKR 0</h2></div>
+          <div class="sortingDiv"> Sort By: &nbsp;
+            <select name="sorting" class="sortBy">
+              <option value=""></option>
+              <option value="cost">cost</option>
+              <option value="date">Date</option>
+            </select>
+          </div>
         </div>
         <div class="transactionForm flex">
           <!-- <h1> T R A N S A C T I O N __ F O R M</h1> -->
-          <form class="transactionForm">
-            <input class="title" type="text" placeholder="title" >
-            <input class="cost" type="text" placeholder="cost" >
-            <select selected="select" class="transactionType" >
+          <form class="transactionForm form">
+            <input class="title inputStyle" type="text" placeholder="Title" >
+            <input class="cost inputStyle" type="text" placeholder="Cost" >
+            <select selected="select" class="transactionType inputStyle" >
               <option value="expanse">expanse</option>
               <option  value="income">income</option>
             </select>
-            <input class="transactionAt" type="date">
-            <button class="addBtn" type="submit" >Add</button>
+            <input class="transactionAt inputStyle" type="date">
+            <button class="addBtn inputStyle" type="submit" >Add</button>
           </form>
           
         </div>

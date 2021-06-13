@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     border: 0;
+    box-sizing: border-box;
 }
 
 html{
@@ -16,33 +17,109 @@ html{
 
 .container{
     display: grid;
-    grid-template-rows: 10vh 15vh minmax(75vh,min-content);
+    grid-template-rows: 7.5vh 7.5vh minmax(75vh,min-content) 10vh;
+    grid-template-columns: minmax(5px,2rem) 20fr 78fr minmax(5px,2rem);
+    grid-template-areas: ". nav nav ."
+                         ". details details ."
+                         ". form transactionList ."
+                         ". . . .";
+    /* grid-template-rows: 7.5vh 7.5vh 15vh minmax(70vh,min-content); */
     background: silver;
+    gap: 5px;
 }
 
 .navbar{
+    grid-area: nav;
     background: wheat;
     display: grid;
-    grid-template-columns: min-content 1fr max-content;
+    grid-template-columns: min-content 1fr max-content max-content;
     color: rgb(0, 97, 97);
 }
+
+
 
 .logo{
     padding: 0 2rem;
 }
 
+.fa-user-circle{
+    font-size: x-large;
+    margin: 0 1rem;
+    border-radius: 50px;
+    color: white;
+    background: gray;
+}
 .name{
     padding: 0 2rem;
 
 }
 
+.singout{
+    padding: 2px 1.5rem;
+    border-radius: 50px;
+    background: lightgreen;
+    height: min-content;
+}
+
+
+.details{
+    grid-area: details;
+    display: grid;
+    background: lightgreen;
+    grid-template-columns: 1fr 1fr;
+    color: rgb(0, 97, 97);
+}
+.amount{
+    /* grid-area: amount; */
+    display: flex;
+    align-items: center;
+}
+.sortingDiv{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border: 1px solid black;
+    font-size: medium;
+    
+}
+.sortBy{
+    border-radius: 0;
+    padding: 1px 5em;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+
+
 .transactionForm{
-    background: rgb(0, 97, 97);
+    grid-area: form;
+    /* background: rgb(0, 97, 97); */
+    background: white;
+    /* display: grid; */
+    /* grid-gap: 1em; */
+    /* justify-content: start; */
+    /* align-items: start; */
+    /* place-content: center; */
+}
+.form {
+    display: grid;
+    place-content: center;
+    grid-gap: 1rem;
+    padding: 0 5px;
+}
+
+.inputStyle{
+    /* width: 90%; */
+    padding: 5px 5px;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid lightgray;
 }
 
 .transactionList{
+    grid-area: transactionList;
     background: seashell;
-    height: 74vh;
+    /* height: 74vh; */
     overflow-y: scroll;
 }
 
@@ -63,9 +140,7 @@ html{
     
 }
 
-.amount h2{
-    border-bottom: 3px double black;
-}
+
 
 .signoutBtn{
     background: none;

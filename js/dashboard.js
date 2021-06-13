@@ -24,10 +24,12 @@ var userSignOut = async () => {
   await auth.signOut();
 };
 
+//convert higher values into "k"
 var converIntoK = (num) => {
   return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
 }
 
+// convert numeric date into month name
 var dateModelling = (date) => {
   var day = date.toDate().getDate()
   day = day < 9 ? "0"+day : day;
@@ -91,7 +93,7 @@ var currentBalance = (transArr) => {
     }
   });
   console.log(currentAMount);
-  amountDiv.textContent = `${currentAMount} Rs`;
+  amountDiv.textContent = `PKR ${currentAMount}`;
 };
 
 
@@ -115,8 +117,10 @@ var renderTransaction = async (uid) => {
       transactionId,
       transactionAt,
     } = transaction;
+    //convert long cost into k
     tempCost = converIntoK(cost)
     tempCost = transactionType === 'expanse' ? `-PKR ${tempCost}` : `PKR${tempCost}`;
+    //convert numeric date into month name
     transactionAt = dateModelling(transactionAt)
 
     transactionList.insertAdjacentHTML(
