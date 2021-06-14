@@ -1,7 +1,6 @@
  var signupBtn = document.querySelector('#signupBtn')
 var signinBtn = document.querySelector("#signinBtn")
 
-
 var flipFunction = (e) => {
     console.log(e)      
     var container = document.querySelector('#containerid')

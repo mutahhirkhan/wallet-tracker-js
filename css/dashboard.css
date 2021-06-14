@@ -28,25 +28,20 @@ a {
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-  }
+}
    
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: #004b6e; 
     border-radius: 10px;
-    transition: background .3s ease;
-  }
+}
   
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #002b3f; 
-  }
+}
+
+
 .container{
     display: grid;
     grid-template-rows: 7.5vh 7vh minmax(75vh,min-content) 8vh;
@@ -88,13 +83,34 @@ a {
     /* background: gray; */
 }
 .name{
-    padding: 0 1.5rem;
     font-size: 1.4rem;
     font-weight: 500;
 
 }
+.signoutBtn{
+    padding: 3px 1.5rem;
+    border-radius: 50px;
+    background: #004b6e;
+    height: min-content;
+    color: white;
+    font-size: small;
+    transition: 0.3s;
+    margin: 0 1.5rem;
+}
 
-
+.fa-sign-out-alt {
+    padding-right: 1.5rem;
+    transition: 0.3s;
+}
+.signoutBtn > * {
+    color:  white;
+}
+.signoutBtn:hover .fa-sign-out-alt{ 
+    transform: translateX(.7rem);
+}
+.signoutBtn:hover {
+    cursor: pointer;
+}
 
 
 .details{
@@ -204,12 +220,12 @@ a {
     font-size: medium;
 }
 .renderCost{
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
     font-size: medium;
 
 }
 .renderTransactionAt{
-    justify-content: flex-end;
+    justify-content: center;
     font-size: medium;
 }
 .renderTransactionEdit{
@@ -227,29 +243,6 @@ a {
     
 }
 
-.signoutBtn{
-    padding: 3px 1.5rem;
-    border-radius: 50px;
-    background: #004b6e;
-    height: min-content;
-    color: white;
-    font-size: small;
-    transition: 0.3s;
-}
-
-.fa-sign-out-alt {
-    padding-right: 1.5rem;
-    transition: 0.3s;
-}
-.signoutBtn > * {
-    color:  white;
-}
-.signoutBtn:hover .fa-sign-out-alt{ 
-    transform: translateX(.7rem);
-}
-.signoutBtn:hover {
-    cursor: pointer;
-}
 
 
 
@@ -316,7 +309,7 @@ a {
         font-size: 50%;
     }
     .navbar{
-        grid-template-columns: min-content 1fr max-content min-content;
+        grid-template-columns: min-content 1fr min-content max-content;
     }
     .logo{
         padding: 0 1rem;

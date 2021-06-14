@@ -6,6 +6,8 @@ var firestore = firebase.firestore();
 var signinForm = document.querySelector(".signinFormArea");
 var signupForm = document.querySelector(".signupFormArea");
 var googleBtn = document.querySelector(".googleSignin");
+var terms = document.querySelector(".policyAgreement")
+
 
 //WHAT WE DO HERE
 /*
@@ -32,24 +34,31 @@ var googleBtn = document.querySelector(".googleSignin");
 var signupWork = async (e) => {
   e.preventDefault();
   try {
+    var terms = document.querySelector(".policyAgreement").checked
     var fullName = document.querySelector(".signupName").value;
     var email = document.querySelector(".signupEmail").value;
     var password = document.querySelector(".signupPassword").value;
+    var terms = document.querySelector(".policyAgreement")
+    console.log(terms)
 
-    //signing up
-    if (fullName && email && password) {
-      //ye change kiya he 
-      //send userInfo to database
-      var userInfo = {
-            fullName, //fullName = fullName
-            email,
-            createdAt: new Date(),
-          };
-          console.log(userInfo)
-          var {
-            user: { uid },
-          } = await auth.createUserWithEmailAndPassword(email, password);
-          await firestore.collection("users").doc(uid).set(userInfo);
+    if(terms)
+    {
+      //signing up
+      if (fullName && email && password) {
+        //ye change kiya he 
+        //send userInfo to database
+        var userInfo = {
+              fullName, //fullName = fullName
+              email,
+              createdAt: new Date(),
+            };
+            console.log(userInfo)
+            var {
+              user: { uid },
+            } = await auth.createUserWithEmailAndPassword(email, password);
+            await firestore.collection("users").doc(uid).set(userInfo);
+      }
+      else alert("Please make sure that you agree to the Terms and Conditions")
     }
   } catch (error) {
     alert(error.message)
@@ -66,6 +75,7 @@ var signupWork = async (e) => {
 //      >nothing.... simply redirect to next page with uid in url
 var signinWithGoogle = async () => {
   try {
+    
     var googleProvider = new firebase.auth.GoogleAuthProvider();
     var {
       additionalUserInfo: { isNewUser },
@@ -96,16 +106,22 @@ var signinWithGoogle = async () => {
 var signinWork = async (e) => {
   e.preventDefault();
   try {
+    var terms = document.querySelector(".policyAgreement").checked
     var email = document.querySelector(".singinEmail").value;
     var password = document.querySelector(".singinPassword").value;
 
-    //signin in
-    if (email && password) {
-      var {
-        user: { uid },
-      } = await auth.signInWithEmailAndPassword(email, password);
+    if(terms) 
+    {
+      //signin in
+      if (email && password) {
+        var {
+          user: { uid },
+        } = await auth.signInWithEmailAndPassword(email, password);
+      }
     }
-  } catch (error) {
+    else alert("Please make sure that you agree to the Terms and Conditions")
+  } 
+  catch (error) {
     alert(error.message)
     // console.log(error.message);
   }

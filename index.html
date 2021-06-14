@@ -17,27 +17,23 @@
         <form class="singinForm flex">
           <div class="signinHeading">
             <h1>SIGN IN</h1>
-            <h3>SIGN IN TO YOUR ACCOUNT</h3>
+            <h4>SIGN IN TO YOUR ACCOUNT</h4>
           </div>
           <div><input class="singinEmail inputStyle" type="text" placeholder="Enter Email" /></div>
           <div><input class="singinPassword inputStyle" type="text" placeholder="Enter Password" /></div>
-          <div>
-            <input type="checkbox" name="rememberMe" class="rememberMe">Remember Me
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            <input type="checkbox" name="policyAgreement" class="policyAgreement">Terms
+          <div class="termsAndConditions">
+            <div>
+              <input type="checkbox" name="rememberMe" class="rememberMe">
+              <label for="rememberMe">Remember Me</label>
+            </div>
+           <div>
+             <input type="checkbox" name="policyAgreement" class="policyAgreement">
+             <label for="policyAgreement">Terms</label>
+            </div>
           </div>
           <div><button class="btn flex" type="submit">submit</button></div>
-          <div><label>Sign in with</label> <button class="googleSignin" type="button">Google</button></div>
-          <div><label for="signunBtn">Don't have an account</label> <span></span><button name="signupBtn" id="signupBtn">sign up</button> <label>now</label></div>
+          <div>Sign in with <button class="googleSignin" type="button">Google</button></div>
+          <div>Don't have an account ? <button name="signupBtn" id="signupBtn"> Sign Up</button></div>
         </form>
       </div>
 
@@ -45,13 +41,13 @@
         <form class="singupForm flex">
           <div class="signupHeading">
             <h1>SIGN UP</h1>
-            <h3>  CREATE AN ACCOUNT</h3>
+            <h4>CREATE AN ACCOUNT</h4>
           </div>
           <div><input class="signupName inputStyle" type="text" placeholder="Enter Full Name" /></div>
           <div><input class="signupEmail inputStyle" type="text" placeholder="Enter Email" /></div>
           <div><input class="signupPassword inputStyle" type="text" placeholder="Enter Password" /></div>
           <div><button class="btn flex" type="submit">submit</button></div>
-          <div><label>Already Have an Account</label> <span> </span><button id="signinBtn">sign in</button></div>
+          <div>Already Have an Account ? <button id="signinBtn">sign in</button></div>
         </form>
       </div>
     </div>

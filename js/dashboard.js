@@ -102,7 +102,8 @@ var currentBalance = (transArr) => {
     }
   });
   // console.log(currentAMount);
-  amountDiv.textContent = `PKR ${currentAMount}`;
+  //regex for comma separated amount after every three digits
+  amountDiv.textContent = `PKR ${currentAMount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };
 
 
@@ -182,7 +183,7 @@ var formSubmission = async (e) => {
         transactionBy: uid,
       };
     }
-    await firestore.collection("transactions").add(transactionObj);
+    // await firestore.collection("transactions").add(transactionObj);
     var clearingFields = () => {
       var title = document.querySelector(".title");
       var cost = document.querySelector(".cost");

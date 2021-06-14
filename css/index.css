@@ -7,7 +7,10 @@
 html{
   font-size: 62.5%;
 }
-
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
 .flex {
   display: flex;
   justify-content: center;
@@ -40,10 +43,12 @@ html{
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: rgba(0, 0, 0, 0.2) 9px 15px 10px 0px;
+  box-shadow: rgba(0, 0, 0, 0.2) 13px 13px 10px 0px,rgba(0, 0, 0, 0.2) -1px -1px 10px 0px ;
   border-radius: 50%;
   text-transform: capitalize;
-  font-family: monospace;
+  /* font-family: monospace; */
+  font-family: 'Source Sans Pro', sans-serif;
+
 }
 /*                                JOINT WORK i.e. SIMILAR WORK -------------------- */
 #signupBtn, #signinBtn, .googleSignin{
@@ -82,7 +87,7 @@ html{
   flex-flow: column;
   row-gap: 1.5rem;
   font-size: 1.7rem;
-  word-spacing: -4px;
+  /* word-spacing: -4px; */
 }
 
 .btn{
@@ -125,6 +130,12 @@ html{
   transform: rotateY(180deg);
 }
 
+.termsAndConditions{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
 
 @media only screen and (max-width: 500px){
   html{
@@ -163,7 +174,7 @@ html{
 
 @media only screen and (max-width: 370px){
   html{
-    font-size: 46.5%;
+    font-size: 49%;
   }
   .formsInner{
     width: 310px;
