@@ -4,6 +4,10 @@
     border: 0;
     box-sizing: border-box;
 }
+::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+}
 
 html{
     font-size: 62.5%;
@@ -84,7 +88,7 @@ a {
     /* background: gray; */
 }
 .name{
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     font-size: 1.4rem;
     font-weight: 500;
 
@@ -97,7 +101,7 @@ a {
     grid-area: details;
     display: grid;
     /* background: lightgreen; */
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     color: rgb(0, 97, 97);
 }
 .amount{
@@ -116,7 +120,7 @@ a {
 }
 .sortBy{
     border-radius: 0;
-    padding: 1px 5em;
+    padding: 1px 2em;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 5px;
@@ -207,16 +211,12 @@ a {
 .renderTransactionAt{
     justify-content: flex-end;
     font-size: medium;
-
-
 }
 .renderTransactionEdit{
 
 }
 .renderItems{
-    /* background: lightsalmon; */
     padding: 4px;
-    
     display: flex;
     align-items: center;
 }
@@ -235,7 +235,6 @@ a {
     color: white;
     font-size: small;
     transition: 0.3s;
-    
 }
 
 .fa-sign-out-alt {
@@ -278,3 +277,68 @@ a {
     /* border-bottom: 1px solid black; */
     cursor: pointer;
 }
+
+
+@media only screen and (max-width: 700px){
+    .container{
+        grid-template-rows: 7.5vh 7vh minmax(15vh,min-content) minmax(60vh,min-content) 8vh;
+        grid-template-columns: minmax(5px,2rem) 98fr minmax(5px,2rem);
+        grid-template-areas: ". nav ."
+                             ". details ."
+                             ". form ."
+                             ". transactionList ."
+                             ". . .";
+    }
+    .formContainer {
+        background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                    url(./../images/mobilebg.png) no-repeat center center / cover;
+    }
+    
+    .form {
+        display: initial;
+    }
+
+    .addBtn{
+        padding: 3px 1.2rem;
+        color: white;
+        background: #004b6e !important;
+        border-radius: 20px;
+        border: 1px solid white !important;
+        
+    }
+    .inputStyle{
+        margin: 5px 10px;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    html{
+        font-size: 50%;
+    }
+    .navbar{
+        grid-template-columns: min-content 1fr max-content min-content;
+    }
+    .logo{
+        padding: 0 1rem;
+    }
+    .fa-sign-out-alt {
+        padding-right: 0.5rem;
+    }
+    .signoutBtn:hover .fa-sign-out-alt{ 
+        transform: translateX(.3rem);
+    }
+    .renderTitle{
+        font-size: small;
+    }
+    .renderCost{
+        font-size: small;
+    }
+    .renderTransactionAt{
+        font-size: small;
+    }
+    .renderItems{
+        padding:  0 4px;
+    }
+}
+
+

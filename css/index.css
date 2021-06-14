@@ -80,7 +80,7 @@ html{
 
 .singinForm, .singupForm{
   flex-flow: column;
-  row-gap: 1rem;
+  row-gap: 1.5rem;
   font-size: 1.7rem;
   word-spacing: -4px;
 }
@@ -126,28 +126,30 @@ html{
 }
 
 
-@media only screen and (max-width: 540px){
+@media only screen and (max-width: 500px){
   html{
-    font-size: 55.5%;
+    font-size: 58.5%;
   } 
   .formsInner{
-    border: 2.5rem solid rgba(255, 255, 255, 0.678);
-    width: 370px;
-    height: 370px;
+    width: 400px;
+    height: 400px;
+  }
+  .singinForm, .singupForm{
+    row-gap: 1.8rem;
+    font-size: 1.7rem;
   }
 }
 
 @media only screen and (max-width: 426px){
   html{
-    font-size: 40.5%;
+    font-size: 52.5%;
   } 
   .formsInner{
-    border: 2rem solid rgba(255, 255, 255, 0.678);
-    width: 320px;
-    height: 320px;
+    width: 350px;
+    height: 350px;
   }
   .singinForm, .singupForm{
-    row-gap: 1.6rem;
+    row-gap: 1.5rem;
     font-size: 1.7rem;
   }
   .signinHeading h3, .signupHeading h3{
@@ -160,8 +162,11 @@ html{
 }
 
 @media only screen and (max-width: 370px){
+  html{
+    font-size: 46.5%;
+  }
   .formsInner{
-    width: 290px;
-    height: 290px;
+    width: 310px;
+    height: 310px;
   }
 }

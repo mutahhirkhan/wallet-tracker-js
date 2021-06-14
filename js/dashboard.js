@@ -66,7 +66,9 @@ var fetchingUserData = async (uid) => {
 var renderUserInfo = async (uid) => {
   var userInfo = await fetchingUserData(uid);
   //setting user info
-  nameDiv.textContent = userInfo.fullName;
+  var username = userInfo.fullName
+  //truncating long usernames
+  nameDiv.textContent = username.length > 15 ? username.substr(0, 15-1) + '...' : username;
 };
 
 
@@ -99,7 +101,7 @@ var currentBalance = (transArr) => {
       currentAMount -= cost;
     }
   });
-  console.log(currentAMount);
+  // console.log(currentAMount);
   amountDiv.textContent = `PKR ${currentAMount}`;
 };
 
@@ -111,7 +113,7 @@ var currentBalance = (transArr) => {
 var renderTransaction = async (uid) => {
   //fetch user transaction
   var transactionArr = await fetchingTransaction(uid);
-  console.log(transactionArr)
+  // console.log(transactionArr)
   //current balacne
   currentBalance(transactionArr);
   //render transactions
@@ -170,7 +172,7 @@ var formSubmission = async (e) => {
     var cost = document.querySelector(".cost").value;
     var transactionType = document.querySelector(".transactionType").value;
     var transactionAt = document.querySelector(".transactionAt").value;
-    console.log(transactionAt)
+    // console.log(transactionAt)
     if (title && cost && transactionType && transactionAt) {
       var transactionObj = {
         title,
