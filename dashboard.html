@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/f0b288be5e.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="https://fontawesome.com/icons/coins?style=solid" type="image">
     <link rel="stylesheet" href="./css/dashboard.css">
     <title>Dashboard</title>
@@ -13,8 +15,8 @@
         <div class="navbar flex">
             <div class="logo"><h1 class="logo"><i class="fas fa-coins"></i></h1></div>
             <div></div>
-            <div class="singout"><button class="signoutBtn"> Sign OUt</button></div>
-            <div class="name flex"><i class="far fa-user-circle"></i> <h3> Name</h3></div>
+            <div class="signoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</div>
+            <div class="name flex"><i class="far fa-user-circle"></i> <p> Name</p></div>
         </div>
         <div class="details">
           <div class="amount"><h2>PKR 0</h2></div>
@@ -26,8 +28,9 @@
             </select>
           </div>
         </div>
-        <div class="transactionForm flex">
+        <div class="transactionForm flex formContainer">
           <!-- <h1> T R A N S A C T I O N __ F O R M</h1> -->
+          <div class="formHeading inputStyle">Add a transaction</div>
           <form class="transactionForm form">
             <input class="title inputStyle" type="text" placeholder="Title" >
             <input class="cost inputStyle" type="text" placeholder="Cost" >
@@ -36,7 +39,7 @@
               <option  value="income">income</option>
             </select>
             <input class="transactionAt inputStyle" type="date">
-            <button class="addBtn inputStyle" type="submit" >Add</button>
+            <button class="addBtn inputStyle" type="submit" >+ Add</button>
           </form>
           
         </div>

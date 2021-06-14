@@ -12,7 +12,7 @@
 console.log("dashboard");
 var auth = firebase.auth();
 var firestore = firebase.firestore();
-var nameDiv = document.querySelector(".name h3");
+var nameDiv = document.querySelector(".name p");
 var signoutBtn = document.querySelector(".signoutBtn");
 var transactionForm = document.querySelector(".transactionForm");
 var transactionList = document.querySelector(".transactionList");
@@ -23,6 +23,13 @@ var uid = null;
 var userSignOut = async () => {
   await auth.signOut();
 };
+
+
+//capitalize first charater of transactionTitle
+var capitalize = (title) => {
+  return title.charAt(0).toUpperCase() + title.slice(1)
+}
+
 
 //convert higher values into "k"
 var converIntoK = (num) => {
@@ -119,31 +126,32 @@ var renderTransaction = async (uid) => {
     } = transaction;
     //convert long cost into k
     tempCost = converIntoK(cost)
-    tempCost = transactionType === 'expanse' ? `-PKR ${tempCost}` : `PKR${tempCost}`;
+    tempCost = transactionType === 'expanse' ? `-PKR ${tempCost}` : `PKR ${tempCost}`;
     //convert numeric date into month name
     transactionAt = dateModelling(transactionAt)
-
+    //capitalize 
+    title = capitalize(title)
     transactionList.insertAdjacentHTML(
       "beforeend",
       `<div class="transactionListItems">
-      <div class="renderIndex renderItems">
-      <!-- <h1><i class="fas fa-check"></i></h1> -->
-      <h1><i class="fas index ${
-        transactionType === "income" ? "fa-check" : "fa-times"
-      }"></i></h1> 
-      </div>
-      <div class="renderTitle renderItems">
-      <h1>${title}</h1>
-      </div>
-      <div class="renderCost renderItems">
-      <h1>${tempCost}</h1>
-      </div>
-      <div class="renderTransactionAt renderItems">
-      <h1>${transactionAt}</h1> 
-      </div>
-      <div class="renderTransactionAt renderItems">
-      <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" ><span>&bull;</span><span>&bull;</span><span>&bull;</span></button></h1></a>
-      </div>
+        <div class="renderIndex renderItems">
+          <h1><i class="fas index ${
+          transactionType === "income" ? "fa-check" : "fa-times"}"></i></h1> 
+        </div>
+        <div class="renderTitle renderItems">
+          <p><b>${title}</b></p>
+        </div>
+        <div class="renderCost renderItems">
+          <p
+          style="color: ${transactionType === "income" ? "green" : "red"}"
+          >${tempCost}</p>
+        </div>
+        <div class="renderTransactionAt renderItems">
+          <p>${transactionAt}</p> 
+        </div>
+        <div class="renderTransactionEdit renderItems">
+          <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" ><span>&bull;</span><span>&bull;</span><span>&bull;</span></button></h1></a>
+        </div>
       </div>`
     );
   });

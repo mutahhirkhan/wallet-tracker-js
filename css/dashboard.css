@@ -7,6 +7,12 @@
 
 html{
     font-size: 62.5%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
 }
 
 .flex{
@@ -15,25 +21,48 @@ html{
     align-items: center;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #004b6e; 
+    border-radius: 10px;
+    transition: background .3s ease;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #002b3f; 
+  }
 .container{
     display: grid;
-    grid-template-rows: 7.5vh 7.5vh minmax(75vh,min-content) 10vh;
+    grid-template-rows: 7.5vh 7vh minmax(75vh,min-content) 8vh;
     grid-template-columns: minmax(5px,2rem) 20fr 78fr minmax(5px,2rem);
     grid-template-areas: ". nav nav ."
                          ". details details ."
                          ". form transactionList ."
                          ". . . .";
     /* grid-template-rows: 7.5vh 7.5vh 15vh minmax(70vh,min-content); */
-    background: silver;
+    background: rgb(233, 233, 233);
     gap: 5px;
 }
 
 .navbar{
     grid-area: nav;
-    background: wheat;
+    background: white;
     display: grid;
     grid-template-columns: min-content 1fr max-content max-content;
     color: rgb(0, 97, 97);
+    border-radius: 0 0 5px 5px;
 }
 
 
@@ -41,31 +70,33 @@ html{
 .logo{
     padding: 0 2rem;
 }
+.fa-coins {
+    color: #004b6e;
+    font-size: x-large;
+
+}
 
 .fa-user-circle{
     font-size: x-large;
     margin: 0 1rem;
     border-radius: 50px;
-    color: white;
-    background: gray;
+    color: #004b6e;
+    /* background: gray; */
 }
 .name{
     padding: 0 2rem;
+    font-size: 1.4rem;
+    font-weight: 500;
 
 }
 
-.singout{
-    padding: 2px 1.5rem;
-    border-radius: 50px;
-    background: lightgreen;
-    height: min-content;
-}
+
 
 
 .details{
     grid-area: details;
     display: grid;
-    background: lightgreen;
+    /* background: lightgreen; */
     grid-template-columns: 1fr 1fr;
     color: rgb(0, 97, 97);
 }
@@ -73,12 +104,13 @@ html{
     /* grid-area: amount; */
     display: flex;
     align-items: center;
+    padding-left: 1rem;
 }
 .sortingDiv{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     font-size: medium;
     
 }
@@ -87,19 +119,26 @@ html{
     padding: 1px 5em;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
 }
 
-
+.formContainer {
+    background: url(./../images/bg.jpg) no-repeat center center / cover;
+    
+}
 
 .transactionForm{
     grid-area: form;
     /* background: rgb(0, 97, 97); */
-    background: white;
+    /* background: white; */
     /* display: grid; */
     /* grid-gap: 1em; */
     /* justify-content: start; */
     /* align-items: start; */
     /* place-content: center; */
+    border-radius: 5px;
+    flex-flow: column;
+    gap: 3rem;
 }
 .form {
     display: grid;
@@ -107,64 +146,117 @@ html{
     grid-gap: 1rem;
     padding: 0 5px;
 }
+.formHeading{
+    text-align: center;
+    font-size: large;
+    border: none !important;
+}
 
 .inputStyle{
     /* width: 90%; */
     padding: 5px 5px;
-    border-radius: 3px;
+    /* border-radius: 3px; */
     outline: none;
-    border: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    background: none;
+    color: white;
 }
+.addBtn{
+    background: none;
+    color: white;
+    /* background: #004b6e; */
+    /* border-radius: 20px; */
+    border: none !important;
+    
+}
+.addBtn:hover{
+    cursor: pointer;
+}
+
+
 
 .transactionList{
     grid-area: transactionList;
-    background: seashell;
-    /* height: 74vh; */
+    height: 75vh;
     overflow-y: scroll;
+    display: grid;
+    grid-row-gap: 1rem;
 }
 
 .transactionListItems{
+    background: white;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: min-content 1fr minmax(8vw, min-content) minmax(15vw, min-content) min-content;
+    grid-template-columns: min-content 1fr minmax(12vw, max-content) minmax(18vw, max-content) max-content;
+    gap: 5px;
+    height: max-content;
+    padding: 1rem 1rem;
+    border-radius: 4px;
+}
+.renderIndex{
+
+}
+.renderTitle{
+    font-size: medium;
+}
+.renderCost{
+    justify-content: flex-end;
+    font-size: medium;
+
+}
+.renderTransactionAt{
+    justify-content: flex-end;
+    font-size: medium;
+
+
+}
+.renderTransactionEdit{
+
+}
+.renderItems{
+    /* background: lightsalmon; */
+    padding: 4px;
+    
+    display: flex;
+    align-items: center;
 }
 
-.renderItems{
-    border-right:1px solid black;
-    border-bottom:1px solid black;
-    padding: 4px;
-}
 
 .logo {
     font-size: 2rem;
     
 }
 
-
-
 .signoutBtn{
-    background: none;
+    padding: 3px 1.5rem;
+    border-radius: 50px;
+    background: #004b6e;
+    height: min-content;
+    color: white;
+    font-size: small;
+    transition: 0.3s;
     
 }
-.signoutBtn:hover{
-    /* border-bottom: 1px solid black; */
+
+.fa-sign-out-alt {
+    padding-right: 1.5rem;
+    transition: 0.3s;
+}
+.signoutBtn > * {
+    color:  white;
+}
+.signoutBtn:hover .fa-sign-out-alt{ 
+    transform: translateX(.7rem);
+}
+.signoutBtn:hover {
     cursor: pointer;
-    text-decoration: underline;
-}
-
-.addBtn{
-    background: none;
-    color: wheat;
-}
-.addBtn:hover{
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 
+
+/* //income  expendse icon*/
 .index{
     font-size: 1rem;
-    width: 1rem;
 }
 
 .fa-times{
@@ -180,10 +272,7 @@ html{
     text-decoration: none;
     outline: none;
 }
-a {
-    text-decoration: none;
-    outline: none;
-}
+
 
 .viewBtn:hover{
     /* border-bottom: 1px solid black; */
