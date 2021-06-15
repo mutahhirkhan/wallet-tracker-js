@@ -24,14 +24,16 @@
           <div class="sortingDiv"> Sort By: &nbsp;
             <select name="sorting" class="sortBy">
               <option value=""></option>
-              <option value="cost">cost</option>
-              <option value="date">Date</option>
+              <option value="costDowngrade">cost(max - min)</option>
+              <option value="costUpgrade">cost(min - max)</option>
+              <option value="dateDowngrade">date(new to old)</option>
+              <option value="dateUpgrade">date(old to new)</option>
             </select>
           </div>
         </div>
         <div class="transactionForm flex formContainer">
           <!-- <h1> T R A N S A C T I O N __ F O R M</h1> -->
-          <div class="formHeading inputStyle">Add a transaction</div>
+          <div class="formHeading inputStyle">Add a Record</div>
           <form class="transactionForm form">
             <input class="title inputStyle" type="text" placeholder="Title" >
             <input class="cost inputStyle" type="number" placeholder="Cost" >

@@ -16,14 +16,33 @@ var nameDiv = document.querySelector(".name p");
 var signoutBtn = document.querySelector(".signoutBtn");
 var transactionForm = document.querySelector(".transactionForm");
 var transactionList = document.querySelector(".transactionList");
+var sortBy = document.querySelector(".sortBy")
+var arrayToSort = []
 var uid = null;
 
 
+
+// ----------------------- helper Functions -------------------------------------
 //signout
 var userSignOut = async () => {
   await auth.signOut();
 };
 
+//Sorting transactionsArr on 2 basis Cost & Date
+var sorting = (e) => {
+console.log(e.target.value)
+ 
+arrayToSort.forEach(arr => console.log(arr.transactionAt.toDate()))
+  if(e.target.value === 'costDowngrade')
+    arrayToSort = arrayToSort.sort((a, b) =>  parseFloat(b.cost) - parseFloat(a.cost));
+  else if(e.target.value === 'costUpgrade')
+    arrayToSort = arrayToSort.sort((a, b) =>  parseFloat(a.cost) - parseFloat(b.cost));
+  else if(sortBy.value === "dateDowngrade")
+    arrayToSort = arrayToSort.sort((a, b) =>  b.transactionAt.toDate() - a.transactionAt.toDate());
+  else if(sortBy.value === "dateUpgrade")
+    arrayToSort = arrayToSort.sort((a, b) =>  a.transactionAt.toDate() - b.transactionAt.toDate());
+  setupUi(arrayToSort)
+} 
 
 //capitalize first charater of transactionTitle
 var capitalize = (title) => {
@@ -85,6 +104,7 @@ var fetchingTransaction = async (uid) => {
     element.transactionId = doc.id;
     transactions.push(element);
   });
+  arrayToSort = transactions
   return transactions;
 };
 
@@ -106,58 +126,65 @@ var currentBalance = (transArr) => {
   amountDiv.textContent = `PKR ${currentAMount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };
 
+//setting up transactions UI
+var setupUi = (transactionArr) => {
+    //current balacne
+    currentBalance(transactionArr);
+    //render transactions
+    transactionList.innerHTML = "";
+    transactionArr.forEach((transaction, index) => {
+      var {
+        title,
+        cost,
+        transactionType,
+        transactionId,
+        transactionAt,
+      } = transaction;
+      //convert long cost into k
+      tempCost = converIntoK(cost)
+      tempCost = transactionType === 'expanse' ? `-PKR ${tempCost}` : `PKR ${tempCost}`;
+      //convert numeric date into month name
+      transactionAt = dateModelling(transactionAt)
+      //capitalize 
+      title = capitalize(title)
+      transactionList.insertAdjacentHTML(
+        "beforeend",
+        `<div class="transactionListItems">
+          <div class="renderIndex renderItems">
+            <h1><i class="fas index ${
+            transactionType === "income" ? "fa-check" : "fa-times"}"></i></h1> 
+          </div>
+          <div class="renderTitle renderItems">
+            <p><b>${title}</b></p>
+          </div>
+          <div class="renderCost renderItems">
+            <p
+            style="color: ${transactionType === "income" ? "green" : "red"}"
+            >${tempCost}</p>
+          </div>
+          <div class="renderTransactionAt renderItems">
+            <p>${transactionAt}</p> 
+          </div>
+          <div class="renderTransactionEdit renderItems">
+            <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" ><span>&bull;</span><span>&bull;</span><span>&bull;</span></button></h1></a>
+          </div>
+        </div>`
+      );
+    });
+}
 
+
+// ------------------------------------ Main Functions Below -----------------------------------
 //fetch user transactions
 //calculate current amount on behlaf o transactions
 //display current amount on navbar
 //display transaction list
-var renderTransaction = async (uid) => {
+var renderTransaction = async (uid, transactionArr=[]) => {
   //fetch user transaction
-  var transactionArr = await fetchingTransaction(uid);
+    transactionArr = await fetchingTransaction(uid);
+    setupUi(transactionArr)
   // console.log(transactionArr)
-  //current balacne
-  currentBalance(transactionArr);
-  //render transactions
-  transactionList.innerHTML = "";
-  transactionArr.forEach((transaction, index) => {
-    var {
-      title,
-      cost,
-      transactionType,
-      transactionId,
-      transactionAt,
-    } = transaction;
-    //convert long cost into k
-    tempCost = converIntoK(cost)
-    tempCost = transactionType === 'expanse' ? `-PKR ${tempCost}` : `PKR ${tempCost}`;
-    //convert numeric date into month name
-    transactionAt = dateModelling(transactionAt)
-    //capitalize 
-    title = capitalize(title)
-    transactionList.insertAdjacentHTML(
-      "beforeend",
-      `<div class="transactionListItems">
-        <div class="renderIndex renderItems">
-          <h1><i class="fas index ${
-          transactionType === "income" ? "fa-check" : "fa-times"}"></i></h1> 
-        </div>
-        <div class="renderTitle renderItems">
-          <p><b>${title}</b></p>
-        </div>
-        <div class="renderCost renderItems">
-          <p
-          style="color: ${transactionType === "income" ? "green" : "red"}"
-          >${tempCost}</p>
-        </div>
-        <div class="renderTransactionAt renderItems">
-          <p>${transactionAt}</p> 
-        </div>
-        <div class="renderTransactionEdit renderItems">
-          <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" ><span>&bull;</span><span>&bull;</span><span>&bull;</span></button></h1></a>
-        </div>
-      </div>`
-    );
-  });
+
 };
 
 //add transaction function
@@ -183,7 +210,7 @@ var formSubmission = async (e) => {
         transactionBy: uid,
       };
     }
-    // await firestore.collection("transactions").add(transactionObj);
+    await firestore.collection("transactions").add(transactionObj);
     var clearingFields = () => {
       var title = document.querySelector(".title");
       var cost = document.querySelector(".cost");
@@ -224,3 +251,4 @@ auth.onAuthStateChanged(async (user) => {
 //listeners
 signoutBtn.addEventListener("click", userSignOut);
 transactionForm.addEventListener("submit", (e) => formSubmission(e));
+sortBy.addEventListener("change", sorting)

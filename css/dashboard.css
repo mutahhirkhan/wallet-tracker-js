@@ -51,7 +51,7 @@ a {
                          ". form transactionList ."
                          ". . . .";
     /* grid-template-rows: 7.5vh 7.5vh 15vh minmax(70vh,min-content); */
-    background: rgb(233, 233, 233);
+    background: rgba(233, 233, 233, 0.514);
     gap: 5px;
 }
 
@@ -136,7 +136,6 @@ a {
 }
 .sortBy{
     border-radius: 0;
-    padding: 1px 2em;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 5px;
@@ -220,7 +219,7 @@ a {
     font-size: medium;
 }
 .renderCost{
-    /* justify-content: flex-end; */
+    justify-content: flex-end;
     font-size: medium;
 
 }
