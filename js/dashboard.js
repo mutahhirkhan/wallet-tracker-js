@@ -16,7 +16,8 @@ var nameDiv = document.querySelector(".name p");
 var signoutBtn = document.querySelector(".signoutBtn");
 var transactionForm = document.querySelector(".transactionForm");
 var transactionList = document.querySelector(".transactionList");
-var sortBy = document.querySelector(".sortBy")
+var sortBy = document.querySelector(".sortBy");
+var deleteBtn = document.querySelector(".deleteTransaction")
 var arrayToSort = []
 var uid = null;
 
@@ -27,6 +28,15 @@ var uid = null;
 var userSignOut = async () => {
   await auth.signOut();
 };
+
+var deleteTransaction = async (id) => {
+  console.log("hi")
+  console.log(id)
+  await firestore.collection("transactions").doc(id).delete()
+  renderTransaction(uid)
+
+
+}
 
 //Sorting transactionsArr on 2 basis Cost & Date
 var sorting = (e) => {
@@ -166,7 +176,15 @@ var setupUi = (transactionArr) => {
             <p>${transactionAt}</p> 
           </div>
           <div class="renderTransactionEdit renderItems">
-            <h1><a href='./transaction.html#${transactionId}'> <button class = "viewBtn" ><span>&bull;</span><span>&bull;</span><span>&bull;</span></button></h1></a>
+            <!--- <h1><a href='./transaction.html#${transactionId}'> -->
+                <button class="viewBtn">
+                  <span class="viewBtnspan">&bullet;&bullet;&bullet;</span>
+                  <div class="eidtMenuWrapper flex">
+                    <a href='./transaction.html#${transactionId}'> <div class="editTransaction">edit</div> </a>
+                    <div class="deleteBtn"><span onclick="deleteTransaction(id)" id=${transactionId}>delete</span></div>
+                  </div>
+                </button>
+            <!-- </h1></a> -->
           </div>
         </div>`
       );
@@ -252,3 +270,4 @@ auth.onAuthStateChanged(async (user) => {
 signoutBtn.addEventListener("click", userSignOut);
 transactionForm.addEventListener("submit", (e) => formSubmission(e));
 sortBy.addEventListener("change", sorting)
+// deleteBtn.addEventListener("click", deleteTransaction)
