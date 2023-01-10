@@ -178,11 +178,15 @@ var setupUi = (transactionArr) => {
           <div class="renderTransactionEdit renderItems">
             <!--- <h1><a href='./transaction.html#${transactionId}'> -->
                 <button class="viewBtn">
-                  <span class="viewBtnspan">&bullet;&bullet;&bullet;</span>
-                  <div class="eidtMenuWrapper flex">
+                
+                <span class="viewBtnspan">
+                  <span><a href='./transaction.html#${transactionId}'> <div class="editTransaction">EDIT</div> </a></span>
+                  <span><div class="deleteBtn"><span onclick="deleteTransaction(id)" id=${transactionId}>DELETE</span></div></span>
+                </span>
+                  <!---- <div class="eidtMenuWrapper flex">
                     <a href='./transaction.html#${transactionId}'> <div class="editTransaction">edit</div> </a>
                     <div class="deleteBtn"><span onclick="deleteTransaction(id)" id=${transactionId}>delete</span></div>
-                  </div>
+                  </div> -->
                 </button>
             <!-- </h1></a> -->
           </div>

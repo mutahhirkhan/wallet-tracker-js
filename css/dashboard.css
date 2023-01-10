@@ -266,6 +266,9 @@ a {
     position: relative;
     /* border: 1px solid black; */
     transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
 .viewBtn:hover .viewBtnspan{
