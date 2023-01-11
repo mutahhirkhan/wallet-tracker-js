@@ -95,9 +95,10 @@ var fetchingUserData = async (uid) => {
 var renderUserInfo = async (uid) => {
   var userInfo = await fetchingUserData(uid);
   //setting user info
-  var username = userInfo.fullName
+  console.log('userInfo',userInfo)
+  var username = userInfo?.fullName
   //truncating long usernames
-  nameDiv.textContent = username.length > 15 ? username.substr(0, 15-1) + '...' : username;
+  nameDiv.textContent = username?.length > 15 ? username?.substr(0, 15-1) + '...' : username;
 };
 
 
@@ -134,6 +135,7 @@ var currentBalance = (transArr) => {
   // console.log(currentAMount);
   //regex for comma separated amount after every three digits
   amountDiv.textContent = `PKR ${currentAMount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+  amountDiv.ariaValueText = currentAMount
 };
 
 //setting up transactions UI
@@ -154,6 +156,8 @@ var setupUi = (transactionArr) => {
       tempCost = converIntoK(cost)
       tempCost = transactionType === 'expanse' ? `-PKR ${tempCost}` : `PKR ${tempCost}`;
       //convert numeric date into month name
+      console.log('transactionAt',transactionAt)
+      let {seconds} = transactionAt;
       transactionAt = dateModelling(transactionAt)
       //capitalize 
       title = capitalize(title)
@@ -169,11 +173,12 @@ var setupUi = (transactionArr) => {
           </div>
           <div class="renderCost renderItems">
             <p
+            value=${cost}
             style="color: ${transactionType === "income" ? "green" : "red"}"
             >${tempCost}</p>
           </div>
           <div class="renderTransactionAt renderItems">
-            <p>${transactionAt}</p> 
+            <p value=${seconds}>${transactionAt}</p> 
           </div>
           <div class="renderTransactionEdit renderItems">
             <!--- <h1><a href='./transaction.html#${transactionId}'> -->
