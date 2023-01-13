@@ -135,7 +135,9 @@ var currentBalance = (transArr) => {
   // console.log(currentAMount);
   //regex for comma separated amount after every three digits
   amountDiv.textContent = `PKR ${currentAMount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-  amountDiv.ariaValueText = currentAMount
+  amountDiv.ariaValueText = currentAMount;
+  amountDiv.title = currentAMount;
+  
 };
 
 //setting up transactions UI
